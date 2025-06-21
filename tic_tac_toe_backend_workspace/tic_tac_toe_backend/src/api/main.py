@@ -59,7 +59,7 @@ class MoveRequest(BaseModel):
         ..., ge=0, le=2, description="Column index of the move (0-2)"
     )
     player: str = Field(
-        ..., regex="^(X|O)$", description="'X' or 'O' making the move"
+        ..., pattern="^(X|O)$", description="'X' or 'O' making the move"
     )
 
 
