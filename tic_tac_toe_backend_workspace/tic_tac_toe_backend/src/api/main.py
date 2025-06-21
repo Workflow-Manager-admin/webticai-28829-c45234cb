@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional, Literal
 import uuid
@@ -16,6 +17,15 @@ app = FastAPI(
     openapi_tags=[
         {"name": "game", "description": "Game state management and play"},
     ]
+)
+
+# Add CORSMiddleware to handle CORS preflight OPTIONS requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can change this to your frontend's origin for stricter security
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all HTTP headers
 )
 
 
